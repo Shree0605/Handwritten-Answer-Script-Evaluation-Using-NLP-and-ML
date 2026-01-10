@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Virtual environment
+.venv/
+env/
+venv/
+
+# HuggingFace / ML cache
+.cache/
+.huggingface/
+
+# Streamlit
+.streamlit/
+
+# Large files
+*.pt
+*.bin
+*.ckpt
+*.onnx
+
+# OS
+.DS_Store
