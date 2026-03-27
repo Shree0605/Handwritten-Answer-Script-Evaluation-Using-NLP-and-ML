@@ -11,13 +11,13 @@
         </head>
         <body>
             <div class="header">
-                <h1>CAT 1 ASSESSMENT</h1>
+                <h1>{{ exam_title }}</h1>
                 <h2>Evaluation Report</h2>
             </div>
             
             <div class="metric">
-                <h3>Student: John Doe</h3>
-                <p>Score: 6/6 (100.0%)</p>
+                <h3>Student: {{ student_name }}</h3>
+                <p>Score: {{ total_marks_obtained }}/{{ total_possible_marks }} ({{ score_percentage }}%)</p>
             </div>
         </body>
         </html>

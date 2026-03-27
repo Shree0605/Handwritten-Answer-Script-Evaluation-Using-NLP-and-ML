@@ -153,21 +153,44 @@ def process_answer_script(uploaded_file, ground_truth, threshold):
         time.sleep(0.5)
         
         # ---- SHOW OCR OUTPUT IMMEDIATELY ----
-    st.markdown("### 🔍 OCR Results (Raw Output)")
+    # st.markdown("### 🔍 OCR Results (Raw Output)")
 
-    if not predictions:
-        st.warning("No OCR predictions generated.") 
-    else:
-        for idx, (filename, pred_data) in enumerate(predictions.items()):
-            st.markdown(f"**Q{idx+1} – {filename}**")
-            st.write(f"Final Prediction: `{pred_data['final_prediction']}`")
+    # if not predictions:
+    #     st.warning("No OCR predictions generated.") 
+    # else:
+    #     for idx, (filename, pred_data) in enumerate(predictions.items()):
+    #         st.markdown(f"**Q{idx+1} – {filename}**")
+    #         st.write(f"Final Prediction: `{pred_data['final_prediction']}`")
 
-            if pred_data['all_predictions']:
-                with st.expander("🔎 Ensemble Details"):
-                    for model, text in pred_data['all_predictions']:
-                        st.write(f"- {model}: {text}")
-            else:
-                st.info("No OCR engine produced output.")
+    #         if pred_data['all_predictions']:
+    #             with st.expander("🔎 OCR Engine Outputs"):
+    #                 trocr_preds = []
+    #                 tesseract_preds = []
+    #                 easyocr_preds = []
+
+    #                 for model, text in pred_data['all_predictions']:
+    #                     if model == "TrOCR":
+    #                         trocr_preds.append(text)
+    #                     elif model == "Tesseract":
+    #                         tesseract_preds.append(text)
+    #                     elif model == "EasyOCR":
+    #                         easyocr_preds.append(text)
+
+    # # Display in order
+    #                 if trocr_preds:
+    #                     for i, txt in enumerate(trocr_preds, 1):
+    #                         st.write(f"🧠 **TrOCR Prediction {i}:** `{txt}`")
+
+    #                 if tesseract_preds:
+    #                     for txt in tesseract_preds:
+    #                         st.write(f"🔤 **Tesseract Prediction:** `{txt}`")
+
+    #                 if easyocr_preds:
+    #                     for txt in easyocr_preds:
+    #                         st.write(f"👁️ **EasyOCR Prediction:** `{txt}`")
+
+    #         else:
+    #             st.info("No OCR engine produced output.")
 
         # Step 4: Get ground truth (if not provided)
         current_step = 3
@@ -305,6 +328,36 @@ def display_processing_results():
     
     st.dataframe(pd.DataFrame(ocr_data), use_container_width=True)
     
+    # st.subheader("🔍 OCR Predictions")
+
+    # ocr_data = []
+
+    # for idx, (filename, pred_data) in enumerate(results['raw_predictions'].items()):
+    # # Collect predictions by model
+    #     trocr_preds = []
+    #     tesseract_pred = ""
+    #     easyocr_pred = ""
+
+    #     for model, pred in pred_data['all_predictions']:
+    #         if model == "TrOCR":
+    #             trocr_preds.append(pred)
+    #         elif model == "Tesseract":
+    #             tesseract_pred = pred
+    #         elif model == "EasyOCR":
+    #             easyocr_pred = pred
+
+    #     ocr_data.append({
+    #         "Question": f"Q{idx+1}",
+    #         "Final Prediction": pred_data['final_prediction'],
+    #     "TrOCR Prediction 1": trocr_preds[0] if len(trocr_preds) > 0 else "",
+    #     "TrOCR Prediction 2": trocr_preds[1] if len(trocr_preds) > 1 else "",
+    #     "Tesseract Prediction": tesseract_pred,
+    #     "EasyOCR Prediction": easyocr_pred
+    # })
+
+    # st.dataframe(pd.DataFrame(ocr_data), use_container_width=True)
+
+
     # 2. Show Initial Evaluation Results
     st.subheader("📈 Initial Evaluation Results")
     
